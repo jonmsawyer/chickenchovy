@@ -1,3 +1,5 @@
+use chickenchovy::Ui;
+
 fn main() {
-    println!("Hello, world!");
+    Ui::run();
 }

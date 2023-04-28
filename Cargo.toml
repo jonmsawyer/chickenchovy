@@ -2,7 +2,58 @@
 name = "chickenchovy"
 version = "0.1.0"
 edition = "2021"
+categories = ["platformer", "games", "2d"]
+description = "A platform game starring the illustrious Chickenchovy, written in Rust/Bevy/Rapier."
+readme = "README.md"
+homepage = "https://chickenchovy.io/"
+repository = "https://github.com/jonmsawyer/chickenchovy/"
+license = "MIT OR Apache-2.0"
+keywords = ["rapier", "bevy", "chickenchovy", "games", "game"]
+publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+#colored = "2"
+bevy_egui = "0.20.3"
+#bevy-inspector-egui = "0.12"
+# Wait til bevy_editor_pls is in crates.io
+#bevy_editor_pls = { git = "https://github.com/jakobhellermann/bevy_editor_pls" }
+#bevy_asset_loader = { version = "0.13", features = ["2d"] }
+#leafwing-input-manager = "0.6.1"
+rand = { version = "0.8.5", features = ["small_rng"] }
+
+# See https://bevy-cheatbook.github.io/setup/bevy-config.html
+[dependencies.bevy]
+version = "0.10.1"
+# Disable the default features if there are any that you do not want
+default-features = false
+features = [
+  # Bevy functionality:
+  "bevy_asset",         # Assets management
+  "bevy_winit",         # Window management
+  "x11",                # Linux: Support X11 windowing system
+  "wayland",            # Linux: Support Wayland windowing system
+
+  # Rendering
+  "bevy_render",        # Rendering framework core
+  "bevy_core_pipeline", # Common rendering abstractions
+  "bevy_sprite",        # 2D (sprites) rendering
+  "bevy_ui",            # Bevy UI
+  "bevy_text",          # Bevy Text
+
+  # File formats:
+  "png",
+]
+
+[workspace]
+resolver = "2"
+
+# Enable first level optimizations in debug mode
+[profile.dev]
+opt-level = 1
+incremental = true
+
+# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
